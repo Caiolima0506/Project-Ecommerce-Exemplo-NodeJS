@@ -1,3 +1,4 @@
+const clientesData = require('../data/clientesData');
 
 const clientes = {
   get : (req, res, next) =>{
@@ -7,16 +8,29 @@ const clientes = {
     let id = req.params.id;
     res.status(201).send(`${id}`);
   },
-  delete : (req, res, next) => {
+  delete : async (req, res, next) => {
     let id = req.params.id;
-    res.status(200).send(`${id}`);
+
+    let result = await clientesData.delete(id);
+
+    res.status(200).send({Success : true, Data : [], Message: "Deletado com sucesso!"});
   },
   getById : (req, res, next) => {
     let id = req.params.id;
     res.status(200).send(` ${id}`);
   },
-  post : (req, res, next) => {
-    res.status(201).send('POST!');
+  post : async (req, res, next) => {
+
+    let clienteToInsert = {
+      Nome: req.body.Nome,
+      CPF: req.body.CPF,
+      Sexo: req.body.Sexo,
+      Email:req.body.Email
+    }
+
+    let result = await clientesData.insert(clienteToInsert);
+
+    res.status(200).send(JSON.stringify({Success : true, Data : result, Message:""}));
   }
 };
 

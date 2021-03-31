@@ -6,5 +6,4 @@ module.exports = (app) => {
     ClientesRoute(app);
     ProdutosRoute(app);
     PedidosRoute(app);
-
 }
