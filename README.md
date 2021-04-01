@@ -369,7 +369,7 @@ A Collection do Postman se encontra na raiz do projeto com o nome `collectionPos
     Connection: close
 
 
-## Emitir um  relatório em PDF de em Pedido
+## Emitir um relatório em PDF com os dados do Pedido
 
 ### Request
 
@@ -384,7 +384,7 @@ A Collection do Postman se encontra na raiz do projeto com o nome `collectionPos
     Status: 204 No Content
     Connection: close
 
-## Enviar email para com dados do pedido para Cliente
+## Enviar email para o Cliente com os dados do pedido 
 
 ### Request
 
