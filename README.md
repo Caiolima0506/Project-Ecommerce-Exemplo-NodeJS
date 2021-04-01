@@ -10,7 +10,7 @@
 # Passo 2  
 
 - No Arquivo ./appsetting.js colocar um email Gmail e senha
-- Clique no linque loque no email inserido e verifique que a opção deste [link](https://myaccount.google.com/lesssecureapps?pli=1&rapt=AEjHL4ORr5nEKwH0tYxYNPNALDN7UpzBnCXjLECOBu9sFoBBFUIAdm_JWQl7UkR4Ag1_dbJOBNw02C6C3XSgCkCGfG6M4YC5jg) esta ativado.
+- verifique se a opção deste [link](https://myaccount.google.com/lesssecureapps?pli=1&rapt=AEjHL4ORr5nEKwH0tYxYNPNALDN7UpzBnCXjLECOBu9sFoBBFUIAdm_JWQl7UkR4Ag1_dbJOBNw02C6C3XSgCkCGfG6M4YC5jg) esta ativada.
 
 
 
@@ -369,7 +369,7 @@ A Collection do Postman se encontra na raiz do projeto com o nome `collectionPos
     Connection: close
 
 
-## Emitir um  relatório em PDF de em Pedido
+## Emitir um relatório em PDF com os dados do Pedido
 
 ### Request
 
@@ -384,7 +384,7 @@ A Collection do Postman se encontra na raiz do projeto com o nome `collectionPos
     Status: 204 No Content
     Connection: close
 
-## Enviar email para com dados do pedido para Cliente
+## Enviar email para o Cliente com os dados do pedido 
 
 ### Request
 
