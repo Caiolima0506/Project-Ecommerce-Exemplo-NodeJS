@@ -10,7 +10,7 @@
 # Passo 2  
 
 - No Arquivo ./appsetting.js colocar um email Gmail e senha
-- Clique no linque loque no email inserido e verifique que a opção deste [link](https://myaccount.google.com/lesssecureapps?pli=1&rapt=AEjHL4ORr5nEKwH0tYxYNPNALDN7UpzBnCXjLECOBu9sFoBBFUIAdm_JWQl7UkR4Ag1_dbJOBNw02C6C3XSgCkCGfG6M4YC5jg) esta ativado.
+- verifique se a opção deste [link](https://myaccount.google.com/lesssecureapps?pli=1&rapt=AEjHL4ORr5nEKwH0tYxYNPNALDN7UpzBnCXjLECOBu9sFoBBFUIAdm_JWQl7UkR4Ag1_dbJOBNw02C6C3XSgCkCGfG6M4YC5jg) esta ativada.
 
 
 
