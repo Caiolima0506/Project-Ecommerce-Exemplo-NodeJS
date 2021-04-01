@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6" crossorigin="anonymous">
+    <title>Document</title>
+</head>
+<body>
+
+    
+    <div style="padding: 18px;" class="container-fluid">
+        
+        <h1 class="text-center">PEDIDO</h1>
+
+        <div class="row">
+            <div class="col-sm-2">
+                <div class="form-group">
+                    <label for="clienteNome"><strong>Nome do Cliente: </strong>  </label>
+                    <span id="clienteNome"><%= cliente.Nome %></span>
+                </div>
+            </div>
+            <div class="col-sm-2">
+                <div class="form-group">
+                    <label for="clienteNome"><strong>Email: </strong>  </label>
+                    <span id="clienteNome"><%= cliente.Email %></span>
+                </div>
+            </div>
+            <div class="col-sm-2">
+                <div class="form-group">
+                    <label for="clienteNome"><strong>CPF: </strong>  </label>
+                    <span id="clienteNome"><%= cliente.CPF %></span>
+                </div>
+            </div>
+            <div class="col-sm-2">
+                <div class="form-group">
+                    <label for="formaPagamento"><strong>Forma de Pagamento: </strong>  </label>
+                    <span id="formaPagamento"><%= pedido.FormaPagamento %></span>
+                </div>
+            </div>
+            <div class="col-sm-2">
+                <div class="form-group">
+                    <label for="obs"><strong>Observação: </strong></label>
+                    <span id="obs"><%= pedido.Observacao %></span>
+                </div>
+            </div>
+            <div class="col-sm-2">
+                <div class="form-group">
+                    <label for="data"> <strong>Data do Pedido: </strong> </label>
+                    <span id="data"><%= pedido.Data %></span>
+                </div>
+            </div>
+        </div>
+
+        <br>
+        <br>
+
+        <div class="row">
+
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>Produto</th>
+                        <th>Quantidade</th>
+                        <th>Valor unidade</th>
+                        <th>Total</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <%table.forEach(function(entry) {%>
+                    <tr>
+                        <td><%=entry.Nome%></td>
+                        <td><%=entry.Quantidade%></td>
+                        <td><%=entry.Valor%></td>
+                        <td><%= entry.ValorTotal %></td>
+                    </tr>
+                    <%});%>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="row">
+
+          <div class="col align-self-end">
+            <div class="float-end"><strong>Valor Total: </strong><%=total%></div>
+          </div>
+        </div>
+      </div>
+
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js" integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf" crossorigin="anonymous"></script>
+</body>
+</html>

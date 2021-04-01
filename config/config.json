@@ -1,0 +1,20 @@
+
+{
+    "development": {
+        "database": "VIPCommerce",
+        "host": "localhost", 
+        "username": "root", 
+        "password": "", 
+        "dialect": "mysql",
+        "port": "3306",
+        "define": {
+        "timestamps": false
+        }
+    },
+    "test": {
+      "use_env_variable": "DATABASE_URL"
+    },
+    "production": {
+      "use_env_variable": "DATABASE_URL"
+    }
+  }

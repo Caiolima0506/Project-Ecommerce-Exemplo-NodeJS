@@ -2,6 +2,7 @@
 const Cliente = require('../data/schema/cliente');
 
 const clientesData = {
+    
     insert: async (clienteValues) => {
         
         const resultoCreate = await Cliente.create({
@@ -27,17 +28,11 @@ const clientesData = {
        return resultFindOne;
 
     },
-    update: async (clienteParam, id) => {
+    update: async (id, clienteParam) => {
 
-        const clienteDb = await this.findOne(id);
-
-        clienteDb.Nome = clienteParam.Nome;
-        clienteDb.Sexo = clienteParam.Sexo;
-        clienteDb.CPF = clienteParam.CPF;
-        clienteDb.Email = clienteParam.Email;
-
-
-        const resultUpdate = await Cliente.save();
+        const resultUpdate = await Cliente.update(clienteParam, {
+            where: { ClienteId: id }
+          });
 
         return resultUpdate;
     },

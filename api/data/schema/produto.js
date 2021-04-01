@@ -2,8 +2,8 @@
 const Sequelize = require('sequelize');
 const database = require('../../../config/db');
  
-const Cliente = database.define('Clientes', {
-    ClienteId: {
+const Produto = database.define('Produtos', {
+    ProdutoId: {
         type: Sequelize.INTEGER,
         autoIncrement: true,
         allowNull: false,
@@ -13,18 +13,18 @@ const Cliente = database.define('Clientes', {
         type: Sequelize.STRING(100),
         allowNull: false
     },
-    CPF: {
-        type: Sequelize.STRING(11),
+    Cor: {
+        type: Sequelize.STRING(20),
         allowNull: false
     },
-    Sexo: {
+    Tamanho: {
         type: Sequelize.STRING(10),
         allowNull: false
     },
-    Email: {
-        type: Sequelize.STRING(40),
+    Valor: {
+        type: Sequelize.DECIMAL,
         allowNull: false
     }
 })
  
-module.exports = Cliente;
+module.exports = Produto;

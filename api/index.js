@@ -3,7 +3,7 @@
  
     try {
         const resultado = await database.sync();
-        console.log(resultado);
+        console.log(resultado,'teste');
     } catch (error) {
         console.log(error);
     }

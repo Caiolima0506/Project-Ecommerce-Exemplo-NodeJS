@@ -17,3 +17,5 @@ require('../config/db');
 server.listen(port, () => {
   console.log(`Servidor rodando na porta ${port} ${new Date()}`)
 });
+
+module.exports = server;
