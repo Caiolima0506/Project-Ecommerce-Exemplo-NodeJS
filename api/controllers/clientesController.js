@@ -1,10 +1,16 @@
 const clientesData = require('../data/clientesData');
+const util = require('../controllers/utilController');
 
 const clientes = {
   get : async (req, res, next) =>{
 
     let result = await clientesData.findAll();
-    res.status(200).json({Success : true, Data : result, Message: "Dados Carregados com Sucesso"});
+
+    if(result.length > 0){
+      res.status(200).json({Success : true, Data : result, Message: "Dados Carregados com Sucesso"});
+    }else{
+      res.status(404).json({Success : true, Data : result, Message: "Não existem dados a serem carregados"});
+    }
 
   },
   put : async (req, res, next) => {
@@ -28,7 +34,7 @@ const clientes = {
 
     let result = await clientesData.delete(id);
 
-    res.status(200).send({Success : true, Data : [], Message: "Deletado com sucesso!"});
+    res.status(204).send({Success : true, Data : [], Message: "Deletado com sucesso!"});
 
   },
   getById : async (req, res, next) => {
@@ -37,10 +43,22 @@ const clientes = {
 
     let result = await clientesData.findOne(id);
 
-    res.status(200).json({Success : true, Data : result, Message: ""});
+    if(result){
+      res.status(200).json({Success : true, Data : result, Message: "Cliente carregado com sucesso!"});
+    }else{
+      res.status(404).json({Success : true, Data : result, Message: `Cliente ${id} não encontrado!`});
+    }
+
 
   },
   post : async (req, res, next) => {
+
+
+    if(!util.IsEmail(req.body.Email)){
+
+      res.status(400).send(JSON.stringify({Success : false, Data : [], Message:"Email  do Cliente é inválido"}));
+      return;
+    }
 
     let clienteToInsert = {
       Nome: req.body.Nome,
@@ -51,7 +69,7 @@ const clientes = {
 
     let result = await clientesData.insert(clienteToInsert);
 
-    res.status(200).send(JSON.stringify({Success : true, Data : result, Message:""}));
+    res.status(201).send(JSON.stringify({Success : true, Data : result, Message:""}));
   }
 };
 

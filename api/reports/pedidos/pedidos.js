@@ -12,11 +12,10 @@ const pedidoReports = {
 
             var options = { format: 'Letter' };
 
-            
             var produtos = [];
             
-            for (let index = 0; index < pedido[0].Produtos.length; index++) {
-                const produto = pedido[0].Produtos[index];
+            for (let index = 0; index < pedido.Produtos.length; index++) {
+                const produto = pedido.Produtos[index];
                 
                 produtos.push({
                     Valor: parseFloat(produto.Valor).toLocaleString('pt-br',{style: 'currency', currency: 'BRL'}),
@@ -38,9 +37,9 @@ const pedidoReports = {
                 table: produtos,
                 total: parseFloat(total).toLocaleString('pt-br',{style: 'currency', currency: 'BRL'}),
                 pedido: {
-                    Observacao : pedido[0].Observacao,
-                    Data: dateFormat(pedido[0].Data, "yyyy-mm-dd h:MM:ss"),
-                    FormaPagamento : pedido[0].FormaPagamento
+                    Observacao : pedido.Observacao,
+                    Data: dateFormat(pedido.Data, "yyyy-mm-dd h:MM:ss"),
+                    FormaPagamento : pedido.FormaPagamento
                 },
                 cliente: cliente
             };
@@ -65,23 +64,15 @@ const pedidoReports = {
             })
         });
 
-
-
-
-
-
-
     }
-
 
 };
 
 function formataCPF(cpf){
     
-    cpf = cpf.replace(/[^\d]/g, "");
-  
-    //realizar a formatação...
-      return cpf.replace(/(\d{3})(\d{3})(\d{3})(\d{2})/, "$1.$2.$3-$4");
-  }
+    let cpfRepalce = cpf.replace(/[^\d]/g, "");
+
+    return cpfRepalce.replace(/(\d{3})(\d{3})(\d{3})(\d{2})/, "$1.$2.$3-$4");
+}
 
 module.exports = pedidoReports
