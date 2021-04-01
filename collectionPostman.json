@@ -1,0 +1,377 @@
+{
+	"info": {
+		"_postman_id": "b15d263c-50ce-4b7e-a5aa-d4f44753eec2",
+		"name": "VIPCommerce",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Clientes",
+			"item": [
+				{
+					"name": "POST Clientes",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\"Nome\":\"Marcos\",\n\"CPF\": \"9999999999\",\n\"Sexo\": \"Masculino\",\n\"Email\": \"marcoscardoso.neto@gmail.com\"\n}"
+						},
+						"url": {
+							"raw": "{{url}}clientes",
+							"host": [
+								"{{url}}clientes"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "DELETE Clientes",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{url}}clientes/1",
+							"host": [
+								"{{url}}clientes"
+							],
+							"path": [
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET Clientes",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}clientes",
+							"host": [
+								"{{url}}clientes"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET One Clientes",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}clientes/1",
+							"host": [
+								"{{url}}clientes"
+							],
+							"path": [
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "PUT Clientes",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\"Nome\":\"Caio Henrique De Carvalho LIma\",\n\"CPF\": \"11111111111\",\n\"Sexo\": \"Masculino\",\n\"Email\": \"caiolima0506@gmail.com\"\n}"
+						},
+						"url": {
+							"raw": "{{url}}clientes/1",
+							"host": [
+								"{{url}}clientes"
+							],
+							"path": [
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Produtos",
+			"item": [
+				{
+					"name": "POST Produtos",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"Nome\":\"Feijão\",\n\t\"Cor\":\"Marrom\",\n\t\"Tamanho\": \"25x10\",\n\t\"Valor\":7\n}"
+						},
+						"url": {
+							"raw": "{{url}}produtos",
+							"host": [
+								"{{url}}produtos"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET Produtos",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}produtos",
+							"host": [
+								"{{url}}produtos"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET One Produtos",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}produtos/1",
+							"host": [
+								"{{url}}produtos"
+							],
+							"path": [
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "PUT Produtos",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"Nome\":\"Feijão Preto\",\n\t\"Cor\":\"Preto\",\n\t\"Tamanho\": \"25x20\",\n\t\"Valor\": 4.0\n}"
+						},
+						"url": {
+							"raw": "{{url}}produtos/1",
+							"host": [
+								"{{url}}produtos"
+							],
+							"path": [
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "DELETE Produtos",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{url}}produtos/1",
+							"host": [
+								"{{url}}produtos"
+							],
+							"path": [
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Pedidos",
+			"item": [
+				{
+					"name": "POST pedidos",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"ClienteId\":1,\n\t\"FormaPagamento\":\"Dinheiro\",\n\t\"Observacao\":\"teste observação\",\n\t\"Data\":\"2021-03-31T22:36:00.000\",\n\t\"Produtos\":[\n\t\t{\n\t\t\t\"ProdutoId\":1,\n\t\t\t\"Quantidade\":3\n\t\t\t\n\t\t},\n\t\t{\n\t\t\t\"ProdutoId\":1,\n\t\t\t\"Quantidade\":10\n\t\t\t\n\t\t}]\n}"
+						},
+						"url": {
+							"raw": "{{url}}pedidos",
+							"host": [
+								"{{url}}pedidos"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET Pedidos",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}pedidos",
+							"host": [
+								"{{url}}pedidos"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET One Pedidos",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}pedidos/1",
+							"host": [
+								"{{url}}pedidos"
+							],
+							"path": [
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "PUT Pedidos",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"ClienteId\":2,\n\t\"FormaPagamento\":\"Cartão\",\n\t\"Observacao\":\"teste observação\",\n\t\"Data\":\"2021-03-31T22:36:00.000\"\n}"
+						},
+						"url": {
+							"raw": "{{url}}pedidos/1",
+							"host": [
+								"{{url}}pedidos"
+							],
+							"path": [
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "DELETE Pedidos",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{url}}pedidos/1",
+							"host": [
+								"{{url}}pedidos"
+							],
+							"path": [
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET Report Pedidos",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{url}}pedidos/1/report",
+							"host": [
+								"{{url}}pedidos"
+							],
+							"path": [
+								"1",
+								"report"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "POST sendmail Pedidos",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{url}}pedidos/1/sendmail",
+							"host": [
+								"{{url}}pedidos"
+							],
+							"path": [
+								"1",
+								"sendmail"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "url",
+			"value": "http://localhost:3001/"
+		}
+	]
+}

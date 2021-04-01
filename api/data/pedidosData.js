@@ -45,7 +45,7 @@ const produtosData = {
                                                     WHERE p.PedidoId = ${id}`, { type: QueryTypes.SELECT });
 
 
-       return resultFindOne;
+       return resultFindOne[0];
 
     },
     update: async (id, pedidoParam) => {

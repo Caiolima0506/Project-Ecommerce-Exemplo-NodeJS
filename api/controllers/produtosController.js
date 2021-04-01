@@ -4,7 +4,12 @@ const produtos = {
   get : async (req, res, next) =>{
 
     let result = await produtosData.findAll();
-    res.status(200).json({Success : true, Data : result, Message: ""});
+
+    if(result.length > 0){
+      res.status(200).json({Success : true, Data : result, Message: "Dados Carregados com Sucesso"});
+    }else{
+      res.status(404).json({Success : true, Data : result, Message: "Não existem dados a serem carregados"});
+    }
 
   },
   put : async (req, res, next) => {
@@ -29,7 +34,7 @@ const produtos = {
 
     let result = await produtosData.delete(id);
 
-    res.status(200).send({Success : true, Data : [], Message: "Produto deletado com sucesso!"});
+    res.status(204).send({Success : true, Data : [], Message: "Produto deletado com sucesso!"});
 
   },
   getById : async (req, res, next) => {
@@ -38,7 +43,11 @@ const produtos = {
 
     let result = await produtosData.findOne(id);
 
-    res.status(200).json({Success : true, Data : result, Message: ""});
+    if(result){
+      res.status(200).json({Success : true, Data : result, Message: "Produto carregado com sucesso!"});
+    }else{
+      res.status(404).json({Success : true, Data : result, Message: `Produto ${id} não encontrado!`});
+    }
 
   },
   post : async (req, res, next) => {
@@ -52,7 +61,7 @@ const produtos = {
 
     let result = await produtosData.insert(produtoToInsert);
 
-    res.status(200).send(JSON.stringify({Success : true, Data : result, Message:""}));
+    res.status(201).send(JSON.stringify({Success : true, Data : result, Message:""}));
 
   }
 };

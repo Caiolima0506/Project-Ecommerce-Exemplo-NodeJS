@@ -1,9 +1,12 @@
 
 const pedidosData = require('../data/pedidosData');
 const clientesData = require('../data/clientesData');
-const quantidadesData = require('../data/QuantidadesData');
+const quantidadesData = require('../data/quantidadesData');
 const reports = require('../reports/pedidos/pedidos');
+const nodemailer = require('nodemailer');
 const { createGzip } = require('zlib');
+const appsettings = require('../../appsettings');
+const util = require('../controllers/utilController');
 
 const pedidos = {
 
@@ -17,11 +20,8 @@ const pedidos = {
   put : async (req, res, next) => {
 
     let id = req.params.id;
- 
-
 
     let result = await pedidosData.update(id, req.body);
-
     
     res.status(200).send(JSON.stringify({Success : true, Data : result, Message:""}));
 
@@ -32,7 +32,7 @@ const pedidos = {
 
     let result = await pedidosData.delete(id);
 
-    res.status(200).send({Success : true, Data : [], Message: "Produto deletado com sucesso!"});
+    res.status(204).send({Success : true, Data : [], Message: "Produto deletado com sucesso!"});
 
   },
   getById : async (req, res, next) => {
@@ -41,7 +41,7 @@ const pedidos = {
 
     let result = await pedidosData.findOne(id);
 
-    res.status(200).json({Success : true, Data : await pedidos.agruparProdutos(result), Message: ""});
+    res.status(200).json({Success : true, Data : await pedidos.agruparProdutos([result]), Message: ""});
 
   },
   post : async (req, res, next) => {
@@ -57,9 +57,7 @@ const pedidos = {
 
     let pedido = await pedidosData.insert(pedidoToInsert)
 
-
     let quantidades = await quantidadesData.insert(quantidadesToInsert, pedido);
-  
   
     let result = {
       ClienteId: pedido.ClienteId,
@@ -69,11 +67,8 @@ const pedidos = {
       Produtos : quantidades
     }
 
-
-    res.status(200).send(JSON.stringify({Success : true, Data : result, Message:""}));
+    res.status(201).send(JSON.stringify({Success : true, Data : result, Message:""}));
  
-
-
   },
   agruparProdutos: (pedidos) => {
     return new Promise((resolve, reject)=>{
@@ -122,11 +117,13 @@ report : async (req, res, next)=> {
 
   let id = req.params.id;
 
-  let result = await pedidosData.findOne(id);
+  let pedido = await pedidosData.findOne(id);
 
-  let cliente = await  clientesData.findOne(result[0].ClienteId);
+  let cliente = await  clientesData.findOne(pedido.ClienteId);
 
-  var report = await reports.pedido(await pedidos.agruparProdutos(result), cliente);
+  let pedidoAgrupado = await pedidos.agruparProdutos([pedido]);
+
+  var report = await reports.pedido(pedidoAgrupado[0], cliente, false);
   
   res.writeHead(200, {
     'Content-Type': 'application/pdf; charset=utf-8',
@@ -134,10 +131,47 @@ report : async (req, res, next)=> {
     'Content-Encoding': 'gzip'
   })
   
-
   report.file.pipe(createGzip()).pipe(res);
 
-  
+},
+sendmail: async (req, res, next) =>{
+
+  let id = req.params.id;
+
+  let pedido = await pedidosData.findOne(id);
+
+  let cliente = await  clientesData.findOne(pedido.ClienteId);
+
+  if(!util.IsEmail(cliente.Email)){
+
+    res.status(400).send(JSON.stringify({Success : false, Data : [], Message:"Email  do Cliente é inválido"}));
+    return;
+  }
+
+  let pedidoAgrupado = await pedidos.agruparProdutos([pedido]);
+
+  var html = await reports.pedido(pedidoAgrupado[0], cliente, true);
+
+  const transporter = nodemailer.createTransport({
+    service: 'Gmail',
+    auth: appsettings.authEmail
+  });
+
+  const mailOptions = {
+    from: appsettings.authEmail.user,
+    to: cliente.Email,
+    subject: `Pedido Nº ${pedido.PedidoId}`,
+    html: html
+  };
+
+  transporter.sendMail(mailOptions, function(error, info){
+    if (error) {
+      console.log(error);
+    } else {
+
+      res.status(200).send(JSON.stringify({Success : true, Data : [], Message:"'Email enviado: '" + info.response}));
+    }
+  });
 
 }
 
