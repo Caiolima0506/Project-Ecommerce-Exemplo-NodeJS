@@ -3,6 +3,7 @@ const pedidosData = require('../data/pedidosData');
 const clientesData = require('../data/clientesData');
 const quantidadesData = require('../data/QuantidadesData');
 const reports = require('../reports/pedidos/pedidos');
+const nodemailer = require('nodemailer');
 const { createGzip } = require('zlib');
 
 const pedidos = {
@@ -126,7 +127,7 @@ report : async (req, res, next)=> {
 
   let cliente = await  clientesData.findOne(result[0].ClienteId);
 
-  var report = await reports.pedido(await pedidos.agruparProdutos(result), cliente);
+  var report = await reports.pedido(await pedidos.agruparProdutos(result), cliente, false);
   
   res.writeHead(200, {
     'Content-Type': 'application/pdf; charset=utf-8',
@@ -138,6 +139,44 @@ report : async (req, res, next)=> {
   report.file.pipe(createGzip()).pipe(res);
 
   
+
+},
+sendmail: async (req, res, next) =>{
+
+  let id = req.params.id;
+
+  let result = await pedidosData.findOne(id);
+
+  let cliente = await  clientesData.findOne(result[0].ClienteId);
+
+  var html = await reports.pedido(await pedidos.agruparProdutos(result), cliente, true);
+
+
+  const transporter = nodemailer.createTransport({
+    service: 'Gmail',
+    auth: {
+      user: "caiolima0506@gmail.com",
+      pass: "Caio49183@"
+    }
+  });
+
+  const mailOptions = {
+    from: 'caiolima0506@gmail.com',
+    to: 'pricilla61@gmail.com',
+    subject: 'E-mail enviado usando Node!',
+    html: html
+  };
+
+  transporter.sendMail(mailOptions, function(error, info){
+    if (error) {
+      console.log(error);
+    } else {
+
+      res.status(200).send(JSON.stringify({Success : true, Data : [], Message:"'Email enviado: '" + info.response}));
+    }
+  });
+
+
 
 }
 

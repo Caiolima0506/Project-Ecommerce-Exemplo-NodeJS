@@ -6,7 +6,7 @@ var dateFormat = require('dateformat');
 
 const pedidoReports = {
 
-    pedido: (pedido, cliente) => {
+    pedido: (pedido, cliente, htmlResult) => {
 
         return new Promise((resolve, reject)=>{
 
@@ -53,8 +53,12 @@ const pedidoReports = {
                     reject(err)
                 }
 
+                if(htmlResult){
+                    resolve(html);
+                }
+
                 pdf.create(html, options).toStream((err, stream)=>{
-    
+                    
                    resolve({file: stream});
         
                 });

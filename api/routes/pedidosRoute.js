@@ -6,7 +6,8 @@ module.exports = (app) => {
    app.delete('/pedidos/:id', PedidosController.delete);
    app.get('/pedidos', PedidosController.get);
    app.get('/pedidos/:id', PedidosController.getById);
-   app.get('/pedidos/:id/report', PedidosController.report);
+   app.post('/pedidos/:id/report', PedidosController.report);
+   app.post('/pedidos/:id/sendmail', PedidosController.sendmail);
 
 
 }
