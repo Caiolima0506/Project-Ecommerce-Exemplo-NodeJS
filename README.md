@@ -22,7 +22,7 @@
 
     npx sequelize-cli db:migrate
 
-## Executar os teste
+## Executar os testes
 
     npm run test
 

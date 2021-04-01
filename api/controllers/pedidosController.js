@@ -53,9 +53,11 @@ const pedidos = {
       Data: req.body.Data,
     };
 
+    console.info(pedidoToInsert)
+
     let quantidadesToInsert = req.body.Produtos;
 
-    let pedido = await pedidosData.insert(pedidoToInsert)
+    let pedido = await pedidosData.insert(pedidoToInsert);
 
     let quantidades = await quantidadesData.insert(quantidadesToInsert, pedido);
   

@@ -20,7 +20,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n\"Nome\":\"Marcos\",\n\"CPF\": \"9999999999\",\n\"Sexo\": \"Masculino\",\n\"Email\": \"marcoscardoso.neto@gmail.com\"\n}"
+							"raw": "{\n\"Nome\":\"João\",\n\"CPF\": \"11111111111\",\n\"Sexo\": \"Masculino\",\n\"Email\": \"teste@teste.com\"\n}"
 						},
 						"url": {
 							"raw": "{{url}}clientes",
@@ -91,7 +91,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n\"Nome\":\"Caio Henrique De Carvalho LIma\",\n\"CPF\": \"11111111111\",\n\"Sexo\": \"Masculino\",\n\"Email\": \"caiolima0506@gmail.com\"\n}"
+							"raw": "{\n\"Nome\":\"Caio Henrique De Carvalho LIma\",\n\"CPF\": \"11111111111\",\n\"Sexo\": \"Masculino\",\n\"Email\": \"teste@teste.com\"\n}"
 						},
 						"url": {
 							"raw": "{{url}}clientes/1",
@@ -224,7 +224,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n\t\"ClienteId\":1,\n\t\"FormaPagamento\":\"Dinheiro\",\n\t\"Observacao\":\"teste observação\",\n\t\"Data\":\"2021-03-31T22:36:00.000\",\n\t\"Produtos\":[\n\t\t{\n\t\t\t\"ProdutoId\":1,\n\t\t\t\"Quantidade\":3\n\t\t\t\n\t\t},\n\t\t{\n\t\t\t\"ProdutoId\":1,\n\t\t\t\"Quantidade\":10\n\t\t\t\n\t\t}]\n}"
+							"raw": "{\n\t\"ClienteId\":1,\n\t\"FormaPagamento\":\"Dinheiro\",\n\t\"Observacao\":\"teste observação\",\n\t\"Data\":\"2021-03-31T22:36:00.000\",\n\t\"Produtos\":[\n\t\t{\n\t\t\t\"ProdutoId\":1,\n\t\t\t\"Quantidade\":5\n\t\t\t\n\t\t}]\n}"
 						},
 						"url": {
 							"raw": "{{url}}pedidos",
@@ -278,7 +278,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n\t\"ClienteId\":2,\n\t\"FormaPagamento\":\"Cartão\",\n\t\"Observacao\":\"teste observação\",\n\t\"Data\":\"2021-03-31T22:36:00.000\"\n}"
+							"raw": "{\n\t\"ClienteId\":1,\n\t\"FormaPagamento\":\"Cartão\",\n\t\"Observacao\":\"teste observação\",\n\t\"Data\":\"2021-03-31T22:36:00.000\"\n}"
 						},
 						"url": {
 							"raw": "{{url}}pedidos/1",
