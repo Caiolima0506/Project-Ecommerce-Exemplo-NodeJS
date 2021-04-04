@@ -14,7 +14,13 @@ const pedidos = {
 
     let result = await pedidosData.findAll();
 
-    res.status(200).json({Success : true, Data : await pedidos.agruparProdutos(result), Message: ""});
+    if(result.length > 0){
+      res.status(200).json({Success : true, Data : await pedidos.agruparProdutos(result), Message: ""});
+    }else{
+      res.status(404).json({Success : false, Data : [], Message: "Não existem dados a serem carregados"});
+    }
+
+    
 
   },
   put : async (req, res, next) => {
@@ -41,7 +47,12 @@ const pedidos = {
 
     let result = await pedidosData.findOne(id);
 
-    res.status(200).json({Success : true, Data : await pedidos.agruparProdutos([result]), Message: ""});
+    if(result){
+      res.status(200).json({Success : true, Data : await pedidos.agruparProdutos([result]), Message: "Pedido carregado com sucesso!"});
+    }else{
+      res.status(404).json({Success : false, Data : result, Message: `Pedido ${id} não encontrado!`});
+    }
+
 
   },
   post : async (req, res, next) => {
@@ -52,8 +63,6 @@ const pedidos = {
       Observacao: req.body.Observacao,
       Data: req.body.Data,
     };
-
-    console.info(pedidoToInsert)
 
     let quantidadesToInsert = req.body.Produtos;
 
@@ -121,7 +130,17 @@ report : async (req, res, next)=> {
 
   let pedido = await pedidosData.findOne(id);
 
+  if(!pedido){
+    res.status(404).json({Success : false, Data : [], Message: `Pedido ${id} não encontrado!`});
+    return;
+  }
+
   let cliente = await  clientesData.findOne(pedido.ClienteId);
+
+  if(!cliente){
+    res.status(404).json({Success : false, Data : [], Message: `Cliente ${pedido.ClienteId} não encontrado!`});
+    return;
+  }
 
   let pedidoAgrupado = await pedidos.agruparProdutos([pedido]);
 
@@ -142,7 +161,17 @@ sendmail: async (req, res, next) =>{
 
   let pedido = await pedidosData.findOne(id);
 
+  if(!pedido){
+    res.status(404).json({Success : false, Data : [], Message: `Pedido ${id} não encontrado!`});
+    return;
+  }
+
   let cliente = await  clientesData.findOne(pedido.ClienteId);
+
+  if(!cliente){
+    res.status(404).json({Success : false, Data : [], Message: `Cliente ${pedido.ClienteId} não encontrado!`});
+    return;
+  }
 
   if(!util.IsEmail(cliente.Email)){
 
@@ -168,7 +197,8 @@ sendmail: async (req, res, next) =>{
 
   transporter.sendMail(mailOptions, function(error, info){
     if (error) {
-      console.log(error);
+      res.status(507).send(JSON.stringify({Success : false, Data : [], Message:"Problema ao enviar o email, verifique as configurações do servidor!"}));
+
     } else {
 
       res.status(200).send(JSON.stringify({Success : true, Data : [], Message:"'Email enviado: '" + info.response}));
