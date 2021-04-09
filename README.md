@@ -2,7 +2,6 @@
 
 
 
-
 # Passo 1
 
 -Colocar as cofigurações do banco Mysql nos arquivos (./config/config.json) e (./config/dbConfig.js) 
