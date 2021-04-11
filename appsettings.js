@@ -1,7 +1,7 @@
 const appsettings  = {
     authEmail:{
-        user:"",
-        pass:""
+        user:" ",
+        pass:" "
     }
 }
 
