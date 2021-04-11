@@ -69,7 +69,7 @@ describe('Teste de integração das rotas de Produtos', () => {
     })
 
     it('Devemos realizar um delete produtos', async () =>{
-        const res = await request(server).delete('/produtos/1').expect(200);
+        const res = await request(server).delete('/produtos/1');
 
         expect(res.statusCode).toEqual(204);
         expect(res.body).toHaveProperty('Success', true);;
